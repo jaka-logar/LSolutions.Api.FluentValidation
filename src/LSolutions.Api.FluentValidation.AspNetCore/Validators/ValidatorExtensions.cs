@@ -1,14 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Text.Json;
-using FluentValidation;
-using FluentValidation.AspNetCore;
-using FluentValidation.Resources;
 using LSolutions.Api.FluentValidation.Validators;
 using LSolutions.Api.FluentValidation.Validators.Results;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 
 namespace LSolutions.Api.FluentValidation.AspNetCore.Validators
 {
@@ -47,22 +42,23 @@ namespace LSolutions.Api.FluentValidation.AspNetCore.Validators
                 {
                     if (modelStateDictionary[key].Errors.Count > 0)
                     {
-                        Dictionary<object, object> test = new Dictionary<object, object>();
+                        Dictionary<string, object> deserializeErrorDictionary = new Dictionary<string, object>();
 
                         foreach (ModelError modelError in modelStateDictionary[key].Errors)
                         {
-                            Dictionary<string, object> deserializeError = JsonSerializer.Deserialize<Dictionary<string, object>>(modelError.ErrorMessage);
+                            Dictionary<string, object> deserializeError = JsonConvert.DeserializeObject<Dictionary<string, object>>(
+                                modelError.ErrorMessage, JsonDefaultSettings.GetDefaultSettings());
 
                             if (deserializeError != null)
                             {
                                 foreach (KeyValuePair<string, object> pair in deserializeError)
                                 {
-                                    test.Add(pair.Key, pair.Value);
+                                    deserializeErrorDictionary.Add(pair.Key, pair.Value);
                                 }
                             }
                         }
 
-                        errors.Add(key, test);
+                        errors.Add(key, deserializeErrorDictionary);
                     }
                 }
             }
@@ -79,69 +75,6 @@ namespace LSolutions.Api.FluentValidation.AspNetCore.Validators
         public static void AddModelErrorJson(this ModelStateDictionary modelStateDictionary, string key, IValidatorResult value)
         {
             modelStateDictionary.AddModelError(key, value.ToJson());
-        }
-
-        /// <summary>
-        ///     Add API fluent validation validators
-        /// </summary>
-        /// <param name="builder">MVC builder</param>
-        /// <param name="cultureInfo">Culture info; Default: en</param>
-        /// <param name="languageManager">Language manager; Default: <see cref="ApiEnglishLanguageManager"/></param>
-        /// <param name="runDefaultMvcValidationAfterFluentValidationExecutes">
-        ///     Whether to run MVC's default validation process (including DataAnnotations) after FluentValidation is executed. True by default.</param>
-        /// <param name="implicitlyValidateChildProperties">
-        ///     Whether or not child properties should be implicitly validated if a matching validator can be found.
-        ///     By default this is false, and you should wire up child validators using SetValidator.</param>
-        /// <returns></returns>
-        public static IMvcBuilder AddApiFluentValidationValidators(this IMvcBuilder builder, CultureInfo cultureInfo = null, LanguageManager languageManager = null,
-            bool runDefaultMvcValidationAfterFluentValidationExecutes = true, bool implicitlyValidateChildProperties = false)
-        {
-            // https://fluentvalidation.net/localization
-            ValidatorOptions.Global.LanguageManager.Culture = cultureInfo ?? new CultureInfo("en");
-            ValidatorOptions.Global.LanguageManager = languageManager ?? new ApiEnglishLanguageManager();
-
-            builder.AddFluentValidation(fv =>
-            {
-                // Register fluent validation as only validation library that executes
-                fv.RunDefaultMvcValidationAfterFluentValidationExecutes = runDefaultMvcValidationAfterFluentValidationExecutes;
-
-                fv.ImplicitlyValidateChildProperties = implicitlyValidateChildProperties;
-            });
-
-            return builder;
-        }
-
-        /// <summary>
-        ///     Add API fluent validation validators
-        /// </summary>
-        /// <typeparam name="T">Assembly type to register validators from</typeparam>
-        /// <param name="builder">MVC builder</param>
-        /// <param name="cultureInfo">Culture info; Default: en</param>
-        /// <param name="languageManager">Language manager; Default: <see cref="ApiEnglishLanguageManager"/></param>
-        /// <param name="runDefaultMvcValidationAfterFluentValidationExecutes">
-        ///     Whether to run MVC's default validation process (including DataAnnotations) after FluentValidation is executed. True by default.</param>
-        /// <param name="implicitlyValidateChildProperties">
-        ///     Whether or not child properties should be implicitly validated if a matching validator can be found.
-        ///     By default this is false, and you should wire up child validators using SetValidator.</param>
-        /// <returns></returns>
-        public static IMvcBuilder AddApiFluentValidationValidators<T>(this IMvcBuilder builder, CultureInfo cultureInfo = null, LanguageManager languageManager = null,
-            bool runDefaultMvcValidationAfterFluentValidationExecutes = true, bool implicitlyValidateChildProperties = false)
-        {
-            // https://fluentvalidation.net/localization
-            ValidatorOptions.Global.LanguageManager.Culture = cultureInfo ?? new CultureInfo("en");
-            ValidatorOptions.Global.LanguageManager = languageManager ?? new ApiEnglishLanguageManager();
-
-            builder.AddFluentValidation(fv =>
-            {
-                // Register fluent validation as only validation library that executes
-                fv.RunDefaultMvcValidationAfterFluentValidationExecutes = runDefaultMvcValidationAfterFluentValidationExecutes;
-
-                fv.ImplicitlyValidateChildProperties = implicitlyValidateChildProperties;
-                
-                fv.RegisterValidatorsFromAssemblyContaining<T>();
-            });
-
-            return builder;
         }
     }
 }

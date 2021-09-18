@@ -8,8 +8,9 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/jaka-logar/LSolutions.Api.FluentValidation</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jaka-logar/LSolutions.Api.FluentValidation</RepositoryUrl>
-    <Version>1.0.1</Version>
-    <PackageReleaseNotes>Not needed NuGet 'System.Text.Json' removed</PackageReleaseNotes>
+    <Version>1.1</Version>
+    <PackageReleaseNotes>- Newtonsoft.Json used instead of System.Text.Json
+- FluentValidation package updated to version 10.2.0</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -23,7 +24,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="[9.3.0,11)" />
+    <PackageReference Include="FluentValidation" Version="[10.2.0,11)" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Runtime.Serialization.Json;
-using System.Text;
+﻿using Newtonsoft.Json;
 
 namespace LSolutions.Api.FluentValidation.Validators
 {
@@ -10,33 +7,22 @@ namespace LSolutions.Api.FluentValidation.Validators
         /// <summary>
         ///     Serialize object to json
         /// </summary>
-        /// <typeparam name="T">Type of object to serialize</typeparam>
         /// <param name="value">Object to serialize</param>
+        /// <param name="settings">Custom serialization settings</param>
         /// <returns></returns>
-        public static string ToJson<T>(this T value)
+        public static string ToJson(this object value, JsonSerializerSettings settings = null)
         {
+            if (settings == null)
+            {
+                settings = JsonDefaultSettings.GetDefaultSettings();
+            }
+
             if (value == null)
             {
-                return "[null]";
+                return string.Empty;
             }
 
-            string result;
-
-            try
-            {
-                using (MemoryStream stream = new MemoryStream())
-                {
-                    DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(T));
-                    ser.WriteObject(stream, value);
-
-                    result = Encoding.UTF8.GetString(stream.GetBuffer(), 0, (int)stream.Length);
-                    stream.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                result = $"[serialize json exception] - {ex.Message}";
-            }
+            string result = JsonConvert.SerializeObject(value, settings);
 
             return result;
         }

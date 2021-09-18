@@ -25,8 +25,23 @@ Packed as two NuGet packages. Core project with translations and AspNetCore proj
 			})
 
 			// Fluent validation
-			.AddApiFluentValidationValidators<Startup>(runDefaultMvcValidationAfterFluentValidationExecutes: false, implicitlyValidateChildProperties: true);
-	}
+			.AddFluentValidation(fv =>
+			{
+				// Register fluent validation as only validation library that executes
+				fv.DisableDataAnnotationsValidation = true;
+
+				fv.ImplicitlyValidateChildProperties = true;
+
+				fv.RegisterValidatorsFromAssemblyContaining<IValidatorResult>();
+				fv.RegisterValidatorsFromAssemblyContaining<Startup>();
+			});
+			
+		
+		// Fluent validation localization
+		// https://fluentvalidation.net/localization
+		ValidatorOptions.Global.LanguageManager = new ApiEnglishLanguageManager();
+		ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("en");
+}
 ```
 
 2. Extend ApiEnglishLanguageManager with translations for your custom validators. 

@@ -7,6 +7,10 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/jaka-logar/LSolutions.Api.FluentValidation</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jaka-logar/LSolutions.Api.FluentValidation</RepositoryUrl>
+    <Version>1.1</Version>
+    <PackageReleaseNotes>- Newtonsoft.Json used instead of System.Text.Json
+- FluentValidation package updated to version 10.2.0
+- Not working extension method AddApiFluentValidationValidators removed</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp3.1|AnyCPU'">
@@ -19,7 +23,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation.AspNetCore" Version="[9.3.0,11)" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="[10.2.0,11)" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
   </ItemGroup>
 
   <ItemGroup>
