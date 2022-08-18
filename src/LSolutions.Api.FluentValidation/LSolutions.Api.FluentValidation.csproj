@@ -7,8 +7,9 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/jaka-logar/LSolutions.Api.FluentValidation</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jaka-logar/LSolutions.Api.FluentValidation</RepositoryUrl>
-    <Version>1.1.1</Version>
-    <PackageReleaseNotes>- Validators interface fix</PackageReleaseNotes>
+    <Version>1.1.2</Version>
+    <PackageReleaseNotes>- Validators interface fix
+- Referenced packages updated</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -22,8 +23,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="[10.2.0,11)" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="FluentValidation" Version="[10.2.0,12)" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
