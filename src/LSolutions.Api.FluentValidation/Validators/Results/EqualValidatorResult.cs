@@ -1,6 +1,6 @@
 ﻿namespace LSolutions.Api.FluentValidation.Validators.Results
 {
-    public class EqualValidatorResult
+    public class EqualValidatorResult : IValidatorResult
     {
         public EqualValidatorResult(string comparisonValue)
         {

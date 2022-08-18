@@ -1,6 +1,6 @@
 ﻿namespace LSolutions.Api.FluentValidation.Validators.Results
 {
-    public class MinLengthValidatorResult
+    public class MinLengthValidatorResult : IValidatorResult
     {
         public MinLengthValidatorResult(string minLength)
         {

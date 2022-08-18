@@ -1,6 +1,6 @@
 ﻿namespace LSolutions.Api.FluentValidation.Validators.Results
 {
-    public class ScalePrecisionValidatorResult
+    public class ScalePrecisionValidatorResult : IValidatorResult
     {
         public ScalePrecisionValidatorResult(string expectedScale, string expectedPrecision)
         {

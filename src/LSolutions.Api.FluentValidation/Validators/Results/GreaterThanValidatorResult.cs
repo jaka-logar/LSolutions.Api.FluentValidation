@@ -1,6 +1,6 @@
 ﻿namespace LSolutions.Api.FluentValidation.Validators.Results
 {
-    public class GreaterThanValidatorResult
+    public class GreaterThanValidatorResult : IValidatorResult
     {
         public GreaterThanValidatorResult(string comparisonValue)
         {

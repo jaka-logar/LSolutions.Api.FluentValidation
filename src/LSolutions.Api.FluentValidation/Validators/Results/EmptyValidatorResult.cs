@@ -1,6 +1,6 @@
 ﻿namespace LSolutions.Api.FluentValidation.Validators.Results
 {
-    public class EmptyValidatorResult
+    public class EmptyValidatorResult : IValidatorResult
     {
         public EmptyValidatorResult()
         {

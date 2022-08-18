@@ -1,6 +1,6 @@
 ﻿namespace LSolutions.Api.FluentValidation.Validators.Results
 {
-    public class ExclusiveBetweenValidatorResult
+    public class ExclusiveBetweenValidatorResult : IValidatorResult
     {
         public ExclusiveBetweenValidatorResult(string from, string to)
         {

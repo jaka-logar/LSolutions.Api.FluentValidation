@@ -3,14 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Jaka Logar</Authors>
-    <Company>Jaka Logar</Company>
     <Description>Custom FluentValidation translations for built-in validators. Translated errors used in API response. Very useful when implementing REST API.</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/jaka-logar/LSolutions.Api.FluentValidation</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jaka-logar/LSolutions.Api.FluentValidation</RepositoryUrl>
-    <Version>1.1</Version>
-    <PackageReleaseNotes>- Newtonsoft.Json used instead of System.Text.Json
-- FluentValidation package updated to version 10.2.0</PackageReleaseNotes>
+    <Version>1.1.1</Version>
+    <PackageReleaseNotes>- Validators interface fix</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
