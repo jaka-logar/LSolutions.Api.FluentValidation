@@ -53,12 +53,12 @@ namespace LSolutions.Api.FluentValidation.AspNetCore.Validators
                             {
                                 foreach (KeyValuePair<string, object> pair in deserializeError)
                                 {
-                                    deserializeErrorDictionary.Add(pair.Key, pair.Value);
+                                    deserializeErrorDictionary.TryAdd(pair.Key, pair.Value);
                                 }
                             }
                         }
 
-                        errors.Add(key, deserializeErrorDictionary);
+                        errors.TryAdd(key, deserializeErrorDictionary);
                     }
                 }
             }
