@@ -4,26 +4,25 @@ using LSolutions.Api.FluentValidation.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace LSolutions.Api.FluentValidation.AspNetCore.Filters
+namespace LSolutions.Api.FluentValidation.AspNetCore.Filters;
+
+public class ValidateModelActionFilter : IActionFilter
 {
-    public class ValidateModelActionFilter : IActionFilter
+    public void OnActionExecuting(ActionExecutingContext context)
     {
-        public void OnActionExecuting(ActionExecutingContext context)
+        if (!context.ModelState.IsValid)
         {
-            if (!context.ModelState.IsValid)
+            // Model state errors
+            IDictionary<string, object> modelStateErrors = context.ModelState.GetModelStateErrorPairs();
+
+            ErrorModel errorModel = new()
             {
-                // Model state errors
-                IDictionary<string, object> modelStateErrors = context.ModelState.GetModelStateErrorPairs();
+                Fields = modelStateErrors
+            };
 
-                ErrorModel errorModel = new ErrorModel
-                {
-                    Fields = modelStateErrors
-                };
-
-                context.Result = new BadRequestObjectResult(errorModel);
-            }
+            context.Result = new BadRequestObjectResult(errorModel);
         }
-
-        public void OnActionExecuted(ActionExecutedContext context) { }
     }
+
+    public void OnActionExecuted(ActionExecutedContext context) { }
 }

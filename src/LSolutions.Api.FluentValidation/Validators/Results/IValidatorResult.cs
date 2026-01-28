@@ -1,6 +1,5 @@
-﻿namespace LSolutions.Api.FluentValidation.Validators.Results
+﻿namespace LSolutions.Api.FluentValidation.Validators.Results;
+
+public interface IValidatorResult
 {
-    public interface IValidatorResult
-    {
-    }
 }

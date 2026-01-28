@@ -1,12 +1,6 @@
-﻿namespace LSolutions.Api.FluentValidation.Validators.Results
-{
-    public class EnumNameValidatorResult
-    {
-        public EnumNameValidatorResult()
-        {
-            IsEnumName = new string[0];
-        }
+﻿namespace LSolutions.Api.FluentValidation.Validators.Results;
 
-        public string[] IsEnumName { get; set; }
-    }
+public class EnumNameValidatorResult
+{
+    public string[] IsEnumName { get; set; } = [];
 }

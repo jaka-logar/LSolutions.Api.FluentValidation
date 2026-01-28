@@ -1,12 +1,6 @@
-﻿namespace LSolutions.Api.FluentValidation.Validators.Results
-{
-    public class LessThanOrEqualValidatorResult : IValidatorResult
-    {
-        public LessThanOrEqualValidatorResult(string comparisonValue)
-        {
-            LessThanOrEqual = new []{comparisonValue};
-        }
+﻿namespace LSolutions.Api.FluentValidation.Validators.Results;
 
-        public string[] LessThanOrEqual { get; set; }
-    }
+public class LessThanOrEqualValidatorResult(string comparisonValue) : IValidatorResult
+{
+    public string[] LessThanOrEqual { get; set; } = [comparisonValue];
 }

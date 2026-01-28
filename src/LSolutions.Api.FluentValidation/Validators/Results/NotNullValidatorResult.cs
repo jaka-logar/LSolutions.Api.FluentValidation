@@ -1,12 +1,6 @@
-﻿namespace LSolutions.Api.FluentValidation.Validators.Results
-{
-    public class NotNullValidatorResult : IValidatorResult
-    {
-        public NotNullValidatorResult()
-        {
-            NotNull = new string[0];
-        }
+﻿namespace LSolutions.Api.FluentValidation.Validators.Results;
 
-        public string[] NotNull { get; set; }
-    }
+public class NotNullValidatorResult : IValidatorResult
+{
+    public string[] NotNull { get; set; } = [];
 }

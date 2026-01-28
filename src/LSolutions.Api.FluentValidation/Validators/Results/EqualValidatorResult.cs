@@ -1,12 +1,6 @@
-﻿namespace LSolutions.Api.FluentValidation.Validators.Results
-{
-    public class EqualValidatorResult : IValidatorResult
-    {
-        public EqualValidatorResult(string comparisonValue)
-        {
-            Equal = new []{comparisonValue};
-        }
+﻿namespace LSolutions.Api.FluentValidation.Validators.Results;
 
-        public string[] Equal { get; set; }
-    }
+public class EqualValidatorResult(string comparisonValue) : IValidatorResult
+{
+    public string[] Equal { get; set; } = [comparisonValue];
 }

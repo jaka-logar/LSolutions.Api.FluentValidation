@@ -1,12 +1,6 @@
-﻿namespace LSolutions.Api.FluentValidation.Validators.Results
-{
-    public class EnumValidatorResult : IValidatorResult
-    {
-        public EnumValidatorResult()
-        {
-            IsInEnum = new string[0];
-        }
+﻿namespace LSolutions.Api.FluentValidation.Validators.Results;
 
-        public string[] IsInEnum { get; set; }
-    }
+public class EnumValidatorResult : IValidatorResult
+{
+    public string[] IsInEnum { get; set; } = [];
 }

@@ -1,12 +1,6 @@
-﻿namespace LSolutions.Api.FluentValidation.Validators.Results
-{
-    public class EmailValidatorResult : IValidatorResult
-    {
-        public EmailValidatorResult()
-        {
-            Email = new string[0];
-        }
+﻿namespace LSolutions.Api.FluentValidation.Validators.Results;
 
-        public string[] Email { get; set; }
-    }
+public class EmailValidatorResult : IValidatorResult
+{
+    public string[] Email { get; set; } = [];
 }

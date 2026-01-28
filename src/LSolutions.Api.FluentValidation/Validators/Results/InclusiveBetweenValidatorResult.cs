@@ -1,12 +1,6 @@
-﻿namespace LSolutions.Api.FluentValidation.Validators.Results
-{
-    public class InclusiveBetweenValidatorResult : IValidatorResult
-    {
-        public InclusiveBetweenValidatorResult(string from, string to)
-        {
-            InclusiveBetween = new []{from, to};
-        }
+﻿namespace LSolutions.Api.FluentValidation.Validators.Results;
 
-        public string[] InclusiveBetween { get; set; }
-    }
+public class InclusiveBetweenValidatorResult(string from, string to) : IValidatorResult
+{
+    public string[] InclusiveBetween { get; set; } = [from, to];
 }

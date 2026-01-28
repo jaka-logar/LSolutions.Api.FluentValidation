@@ -1,12 +1,6 @@
-﻿namespace LSolutions.Api.FluentValidation.Validators.Results
-{
-    public class NotFoundValidatorResult : IValidatorResult
-    {
-        public NotFoundValidatorResult()
-        {
-            NotFound = new string[0];
-        }
+﻿namespace LSolutions.Api.FluentValidation.Validators.Results;
 
-        public string[] NotFound { get; set; }
-    }
+public class NotFoundValidatorResult : IValidatorResult
+{
+    public string[] NotFound { get; set; } = [];
 }

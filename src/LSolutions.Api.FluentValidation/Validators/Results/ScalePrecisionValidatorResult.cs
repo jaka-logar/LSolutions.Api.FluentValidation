@@ -1,12 +1,6 @@
-﻿namespace LSolutions.Api.FluentValidation.Validators.Results
-{
-    public class ScalePrecisionValidatorResult : IValidatorResult
-    {
-        public ScalePrecisionValidatorResult(string expectedScale, string expectedPrecision)
-        {
-            ScalePrecision = new []{expectedScale, expectedPrecision};
-        }
+﻿namespace LSolutions.Api.FluentValidation.Validators.Results;
 
-        public string[] ScalePrecision { get; set; }
-    }
+public class ScalePrecisionValidatorResult(string expectedScale, string expectedPrecision) : IValidatorResult
+{
+    public string[] ScalePrecision { get; set; } = [expectedScale, expectedPrecision];
 }

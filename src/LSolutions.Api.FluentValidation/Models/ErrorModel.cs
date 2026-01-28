@@ -1,25 +1,19 @@
 ﻿using System.Collections.Generic;
 
-namespace LSolutions.Api.FluentValidation.Models
+namespace LSolutions.Api.FluentValidation.Models;
+
+/// <summary>
+///     Standard error model
+/// </summary>
+public class ErrorModel
 {
     /// <summary>
-    ///     Standard error model
+    ///     List of general errors
     /// </summary>
-    public class ErrorModel
-    {
-        public ErrorModel()
-        {
-            Errors = new List<string>();
-        }
+    public List<string> Errors { get; set; } = [];
 
-        /// <summary>
-        ///     List of general errors
-        /// </summary>
-        public List<string> Errors { get; set; }
-
-        /// <summary>
-        ///     List of fields errors
-        /// </summary>
-        public IDictionary<string, object> Fields { get; set; }
-    }
+    /// <summary>
+    ///     List of fields errors
+    /// </summary>
+    public IDictionary<string, object> Fields { get; set; }
 }

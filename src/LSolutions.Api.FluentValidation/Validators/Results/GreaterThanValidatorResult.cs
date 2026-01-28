@@ -1,12 +1,6 @@
-﻿namespace LSolutions.Api.FluentValidation.Validators.Results
-{
-    public class GreaterThanValidatorResult : IValidatorResult
-    {
-        public GreaterThanValidatorResult(string comparisonValue)
-        {
-            GreaterThan = new []{comparisonValue};
-        }
+﻿namespace LSolutions.Api.FluentValidation.Validators.Results;
 
-        public string[] GreaterThan { get; set; }
-    }
+public class GreaterThanValidatorResult(string comparisonValue) : IValidatorResult
+{
+    public string[] GreaterThan { get; set; } = [comparisonValue];
 }

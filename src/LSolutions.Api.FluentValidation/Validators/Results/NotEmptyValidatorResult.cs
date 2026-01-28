@@ -1,12 +1,6 @@
-﻿namespace LSolutions.Api.FluentValidation.Validators.Results
-{
-    public class NotEmptyValidatorResult : IValidatorResult
-    {
-        public NotEmptyValidatorResult()
-        {
-            NotEmpty = new string[0];
-        }
+﻿namespace LSolutions.Api.FluentValidation.Validators.Results;
 
-        public string[] NotEmpty { get; set; }
-    }
+public class NotEmptyValidatorResult : IValidatorResult
+{
+    public string[] NotEmpty { get; set; } = [];
 }

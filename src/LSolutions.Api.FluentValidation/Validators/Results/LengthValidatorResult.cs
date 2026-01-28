@@ -1,12 +1,6 @@
-﻿namespace LSolutions.Api.FluentValidation.Validators.Results
-{
-    public class LengthValidatorResult : IValidatorResult
-    {
-        public LengthValidatorResult(string minLength, string maxLength)
-        {
-            Length = new []{minLength, maxLength};
-        }
+﻿namespace LSolutions.Api.FluentValidation.Validators.Results;
 
-        public string[] Length { get; set; }
-    }
+public class LengthValidatorResult(string minLength, string maxLength) : IValidatorResult
+{
+    public string[] Length { get; set; } = [minLength, maxLength];
 }

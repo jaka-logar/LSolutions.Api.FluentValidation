@@ -1,12 +1,6 @@
-﻿namespace LSolutions.Api.FluentValidation.Validators.Results
-{
-    public class UniqueValidatorResult : IValidatorResult
-    {
-        public UniqueValidatorResult()
-        {
-            Unique = new string[0];
-        }
+﻿namespace LSolutions.Api.FluentValidation.Validators.Results;
 
-        public string[] Unique { get; set; }
-    }
+public class UniqueValidatorResult : IValidatorResult
+{
+    public string[] Unique { get; set; } = [];
 }
