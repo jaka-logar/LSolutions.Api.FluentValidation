@@ -14,34 +14,24 @@ Packed as two NuGet packages. Core project with translations and AspNetCore proj
 
 ## Usage
 
-1. Add code below in your Startup.cs
+1. Add code below in your Program.cs
 ```csharp
-    public void ConfigureServices(IServiceCollection services)
-	{
-		services
-			.AddControllers(configure =>
-			{
-				configure.Filters.Add(typeof(ValidateModelActionFilter));
-			})
+    // Fluent validation
+    builder.Services.AddFluentValidationAutoValidation(fv =>
+    {
+        // Register fluent validation as only validation library that executes
+        fv.DisableDataAnnotationsValidation = true;
+    })
+    .AddFluentValidationClientsideAdapters()
+    .AddValidatorsFromAssemblyContaining<IValidatorResult>()
+    .AddValidatorsFromAssemblyContaining<Program>();
 
-			// Fluent validation
-			.AddFluentValidation(fv =>
-			{
-				// Register fluent validation as only validation library that executes
-				fv.DisableDataAnnotationsValidation = true;
 
-				fv.ImplicitlyValidateChildProperties = true;
-
-				fv.RegisterValidatorsFromAssemblyContaining<IValidatorResult>();
-				fv.RegisterValidatorsFromAssemblyContaining<Startup>();
-			});
-			
-		
-		// Fluent validation localization
-		// https://fluentvalidation.net/localization
-		ValidatorOptions.Global.LanguageManager = new ApiEnglishLanguageManager();
-		ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("en");
-}
+    // Before builder.Build(); add lines below
+    // Fluent validation localization
+    // https://fluentvalidation.net/localization
+    ValidatorOptions.Global.LanguageManager = new ApiEnglishLanguageManager();
+    ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("en");
 ```
 
 2. Extend ApiEnglishLanguageManager with translations for your custom validators. 

@@ -7,9 +7,11 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/jaka-logar/LSolutions.Api.FluentValidation</PackageProjectUrl>
     <RepositoryUrl>https://github.com/jaka-logar/LSolutions.Api.FluentValidation</RepositoryUrl>
-    <Version>1.1.2</Version>
-    <PackageReleaseNotes>- Validators interface fix
-- Referenced packages updated</PackageReleaseNotes>
+    <Version>1.2.0</Version>
+    <PackageReleaseNotes>
+      - Target frameworks net8.0, net9.0
+      - Upgraded to FluentValidation 12+
+    </PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
@@ -19,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>obj\Release\netstandard2.0\LSolutions.Api.FluentValidation.xml</DocumentationFile>
+    <DocumentationFile>obj\Release\net8.0\LSolutions.Api.FluentValidation.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
 
