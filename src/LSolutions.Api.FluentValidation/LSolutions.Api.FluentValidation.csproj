@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <Authors>Jaka Logar</Authors>
     <Description>Custom FluentValidation translations for built-in validators. Translated errors used in API response. Very useful when implementing REST API.</Description>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="[10.2.0,12)" />
+    <PackageReference Include="FluentValidation" Version="[12,)" />
     <PackageReference Include="Newtonsoft.Json" Version="[13.0.1,)" />
   </ItemGroup>
 
